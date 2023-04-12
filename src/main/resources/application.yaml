@@ -1,0 +1,6 @@
+ktor:
+    application:
+        modules:
+            - com.zadorotskas.ApplicationKt.module
+    deployment:
+        port: 8080
