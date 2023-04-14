@@ -1,4 +1,4 @@
-package com.zadorotskas.blockchain
+package com.zadorotskas.blockchain.mining
 
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
