@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  node-1:
+    image: zadorotskas/blockchain
+    container_name: node-1
+    network_mode: host
+    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar -a 127.0.0.1:8080 -n 127.0.0.1:8081;127.0.0.1:8082 -nf increment
+
+  node-2:
+    image: zadorotskas/blockchain
+    container_name: node-2
+    network_mode: host
+    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar -a 127.0.0.1:8081 -n 127.0.0.1:8080;127.0.0.1:8082 -nf random
+
+  node-3:
+    image: zadorotskas/blockchain
+    container_name: node-3
+    network_mode: host
+    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar -a 127.0.0.1:8082 -n 127.0.0.1:8080;127.0.0.1:8081 -nf random -g
