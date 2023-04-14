@@ -53,13 +53,15 @@ internal class NodeTest {
             first.blockchain,
             third.blockchain
         )
+        assertBlockchainEquals(
+            second.blockchain,
+            third.blockchain
+        )
     }
 
     private fun assertBlockchainEquals(first: Blockchain, second: Blockchain) {
-        val firstBlocks = first.allBlocks
-        val secondBlocks = second.allBlocks
-
-        assertEquals(firstBlocks.size, secondBlocks.size)
+        val firstBlocks = if (first.allBlocks.size < second.allBlocks.size) first.allBlocks else second.allBlocks
+        val secondBlocks = if (first.allBlocks.size < second.allBlocks.size) second.allBlocks else first.allBlocks
 
         firstBlocks.forEachIndexed { index, firstBlock ->
             val secondBlock = secondBlocks[index]

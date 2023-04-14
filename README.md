@@ -1,6 +1,8 @@
 # Blockchain
 Simple blockchain project for network programming course
 
+[![Tests](https://github.com/zadorotskas/Blockchain/actions/workflows/blockchain.yml/badge.svg?branch=master)](https://github.com/zadorotskas/Blockchain/actions/workflows/gradle-tests.yml)
+
 ## Run with docker
 Clone repository
 ```console
