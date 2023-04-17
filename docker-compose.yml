@@ -4,16 +4,29 @@ services:
     image: zadorotskas/blockchain
     container_name: node-1
     network_mode: host
-    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar -a 127.0.0.1:8080 -n 127.0.0.1:8081;127.0.0.1:8082 -nf increment
+    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar
+    environment:
+      ADDRESS: 127.0.0.1:8080
+      NETWORK: 127.0.0.1:8081;127.0.0.1:8082
+      NONCE: increment
 
   node-2:
     image: zadorotskas/blockchain
     container_name: node-2
     network_mode: host
-    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar -a 127.0.0.1:8081 -n 127.0.0.1:8080;127.0.0.1:8082 -nf random
+    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar
+    environment:
+      ADDRESS: 127.0.0.1:8081
+      NETWORK: 127.0.0.1:8080;127.0.0.1:8082
+      NONCE: random
 
   node-3:
     image: zadorotskas/blockchain
     container_name: node-3
     network_mode: host
-    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar -a 127.0.0.1:8082 -n 127.0.0.1:8080;127.0.0.1:8081 -nf random -g
+    command: java -jar /blockchain/build/libs/com.zadorotskas.blockchain-0.0.1.jar
+    environment:
+      ADDRESS: 127.0.0.1:8082
+      NETWORK: 127.0.0.1:8080;127.0.0.1:8081
+      NONCE: random
+      GENESIS: true
