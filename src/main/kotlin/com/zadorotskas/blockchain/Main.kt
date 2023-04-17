@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 fun main() {
     val address = System.getenv("ADDRESS")
     val otherNodes = System.getenv("NETWORK")
-    val nonceFunctionName = System.getenv("NONCE")
+    val nonceFunctionName = System.getenv("NONCE") ?: "random"
     val node = Node(
         address = AddressParser.parse(address),
         otherNodes = otherNodes.split(";").map { AddressParser.parse(it) },
