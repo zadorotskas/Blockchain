@@ -4,15 +4,18 @@ import com.zadorotskas.blockchain.network.AddressParser
 import com.zadorotskas.blockchain.network.Node
 import kotlinx.coroutines.runBlocking
 
-fun main(args: Array<String>) {
-    val config = Config(args)
+fun main() {
+    val address = System.getenv("ADDRESS")
+    val otherNodes = System.getenv("NETWORK")
+    val nonceFunctionName = System.getenv("NONCE") ?: "random"
     val node = Node(
-        address = AddressParser.parse(config.thisAddress),
-        otherNodes = config.networkAddresses.split(";").map { AddressParser.parse(it) },
-        nonceFunctionName = config.nonceFunction
+        address = AddressParser.parse(address),
+        otherNodes = otherNodes.split(";").map { AddressParser.parse(it) },
+        nonceFunctionName = nonceFunctionName
     )
 
+    val needToGenerateGenesis = System.getenv("GENESIS")?.toBoolean() ?: false
     runBlocking {
-        node.launchNode(config.needToGenerateGenesis)
+        node.launchNode(needToGenerateGenesis)
     }
 }
